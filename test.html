@@ -16,9 +16,13 @@
 
 <script>
     fin.desktop.main(async () => {
-    fin.desktop.InterApplicationBus.subscribe("*", "a topic", function(message, uuid, name) {
+    fin.desktop.InterApplicationBus.subscribe("*", "a topic", async function(message, uuid, name) {
         console.log('uuid', uuid);
-        const client = fin.desktop.Service.connect({uuid});
+        const client = await fin.desktop.Service.connect({uuid});
+        client.dispatch('test', res => {
+            console.log(res);
+            fin.desktop.InterApplicationBus.publish("return", res);
+        })
     });
 
     });
