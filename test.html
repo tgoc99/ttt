@@ -19,7 +19,7 @@
     fin.desktop.InterApplicationBus.subscribe("*", "a topic", async function(message, uuid, name) {
         console.log('uuid', uuid);
         const client = await fin.desktop.Service.connect({uuid});
-        client.dispatch('test', res => {
+        client.dispatch('test').then(res => {
             console.log(res);
             fin.desktop.InterApplicationBus.publish("return", res);
         })
