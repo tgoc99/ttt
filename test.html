@@ -17,6 +17,7 @@
 <script>
     fin.desktop.main(async () => {
     fin.desktop.InterApplicationBus.subscribe("*", "a topic", function(message, uuid, name) {
+        console.log('uuid', uuid);
         const client = fin.desktop.Service.connect({uuid});
     });
 
