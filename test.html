@@ -16,8 +16,9 @@
 
 <script>
     fin.desktop.main(async () => {
-
-        const client = await fin.desktop.Service.connect({uuid:'adapter-test-app'});
+    fin.desktop.InterApplicationBus.subscribe("*", "a topic", function(message, uuid, name) {
+        const client = await fin.desktop.Service.connect({uuid});
+    });
 
     });
 </script>
